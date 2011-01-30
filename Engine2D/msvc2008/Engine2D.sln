@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual C++ Express 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Engine2D", "Engine2D.vcproj", "{D1B252D8-D217-41D8-A483-FB4CE790B767}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EngineTest", "..\..\..\EngineTest\msvc2008\EngineTest.vcproj", "{1D2FF9F3-4F2E-4374-ADBE-C595E23D865B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D1B252D8-D217-41D8-A483-FB4CE790B767} = {D1B252D8-D217-41D8-A483-FB4CE790B767}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D1B252D8-D217-41D8-A483-FB4CE790B767}.Debug|Win32.ActiveCfg = Debug|Win32
+		{D1B252D8-D217-41D8-A483-FB4CE790B767}.Debug|Win32.Build.0 = Debug|Win32
+		{D1B252D8-D217-41D8-A483-FB4CE790B767}.Release|Win32.ActiveCfg = Release|Win32
+		{D1B252D8-D217-41D8-A483-FB4CE790B767}.Release|Win32.Build.0 = Release|Win32
+		{1D2FF9F3-4F2E-4374-ADBE-C595E23D865B}.Debug|Win32.ActiveCfg = Debug|Win32
+		{1D2FF9F3-4F2E-4374-ADBE-C595E23D865B}.Debug|Win32.Build.0 = Debug|Win32
+		{1D2FF9F3-4F2E-4374-ADBE-C595E23D865B}.Release|Win32.ActiveCfg = Release|Win32
+		{1D2FF9F3-4F2E-4374-ADBE-C595E23D865B}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
