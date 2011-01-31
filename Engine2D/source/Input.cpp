@@ -8,14 +8,12 @@ namespace Engine2D {
 		window = hwnd;
 	
 		//create DirectInput object
-		DirectInput8Create( GetModuleHandle(NULL), DIRECTINPUT_VERSION, 
-			IID_IDirectInput8, (void**)&di, NULL );
+		DirectInput8Create( GetModuleHandle(NULL), DIRECTINPUT_VERSION, IID_IDirectInput8, (void**)&di, NULL );
 	
 		//initialize keyboard
 		di->CreateDevice(GUID_SysKeyboard, &keyboard, NULL);
 		keyboard->SetDataFormat( &c_dfDIKeyboard );
-		keyboard->SetCooperativeLevel( window, 
-			DISCL_FOREGROUND | DISCL_NONEXCLUSIVE );
+		keyboard->SetCooperativeLevel( window, DISCL_FOREGROUND | DISCL_NONEXCLUSIVE );
 		keyboard->Acquire();
 	
 		//initialize mouse
