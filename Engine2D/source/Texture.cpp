@@ -30,7 +30,7 @@ bool Texture::Load(std::string filename, D3DCOLOR transcolor)
     result = D3DXGetImageInfoFromFile(filename.c_str(), &info);
     if (result != D3D_OK) 	{
         texture = NULL;
-		return 1;
+		return 0;
 	}
 
     //create the new texture by loading a bitmap image file
