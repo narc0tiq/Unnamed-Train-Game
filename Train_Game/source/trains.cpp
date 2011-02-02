@@ -5,6 +5,8 @@
 
 */
 
+#include <iostream>
+
 enum CargoType
 {
 	EngineNone,
@@ -49,12 +51,12 @@ Train Car data structure
 */
 	struct TrainCar
 	{
-		TrainCar		*NextCar;
+		TrainCar*		NextCar;
 		int				CargoVolumeA;
 		int				CargoVolumeB;
-		TrainCarType	*CarType;
+		TrainCarType*	CarType;
 		
-		TrainCar(TrainCarType *Car_Type)
+		TrainCar(TrainCarType* Car_Type)
 		{
 			NextCar			= NULL;	// Floating pointer is bad!
 			CargoVolumeA	= 0;
@@ -74,7 +76,7 @@ public:
 	
 private:
 	float		Speed;
-	TrainCar	*RootCar;
+	TrainCar*	RootCar;
 	
 	
 public:
@@ -98,8 +100,8 @@ public:
 	*/
 	bool AddTrainCar()
 	{
-		TrainCar	*temp	= NULL;			// Temparary pointer
-		TrainCar	newCar	= new TrainCar;
+		TrainCar*	temp	= NULL;			// Temparary pointer
+		TrainCar*	newCar	= new TrainCar(NULL);
 		
 		temp = RootCar;
 		if (temp == NULL)
@@ -120,24 +122,16 @@ public:
 	TrainCar* GetTrainCar(int pos)
 	{
 		int c = 0;
-		TrainCar	*temp	= RootCar;
+		TrainCar* temp	= RootCar;
 		if (RootCar == NULL) return NULL;
 		
 		while (temp->NextCar != NULL)
 		{
-			if (c == pos) return *temp;
+			if (c == pos) return temp;
 			c++;
 			temp = temp->NextCar;
 		}
-		if (c == pos) return *temp;
+		if (c == pos) return temp;
 		return NULL;
 	}
-	
-
 };
-
-
-
-
-
-
