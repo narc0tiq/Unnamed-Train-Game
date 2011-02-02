@@ -1,0 +1,6 @@
+Things that need looking at in the base engine.
+
+* Sprites need to have a setColourKey/getColourKey function pair.
+* Create a tile map class.
+* Particle delay between particles.
+* Fix ParticleEmitter classes as they are full of noob errors.

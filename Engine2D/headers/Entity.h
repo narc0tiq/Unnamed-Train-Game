@@ -51,6 +51,7 @@ namespace Engine2D {
 		int getObjectType() { return objectType; }
 		void setObjectType(int value) { objectType = value; }
 
+		void adjustForPause(int pause_length) { lifetimeLength += pause_length; }
 	};
 
 };

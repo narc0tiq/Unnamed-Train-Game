@@ -5,6 +5,8 @@ using namespace Engine2D;
 
 Sprite *testspr;
 Script settings;
+ParticleEmitter *pa;
+Font *systemFont;
 
 bool game_preload()
 {
@@ -23,6 +25,31 @@ bool game_preload()
 bool game_init( HWND hWnd )
 {
 	bool loadCheck;
+
+//	g_engine->setMaximizeProcessor( true );
+
+	systemFont = new Font();
+	if( !systemFont->loadImage( "font.tga" ) )
+	{
+		g_engine->message( "Error loading system font." );
+		return false;
+	}
+	systemFont->setColumns( 16 );
+	systemFont->setCharSize( 15, 20 );
+	systemFont->loadWidthData( "font.dat" );
+
+	pa = new ParticleEmitter();
+
+	pa->loadImage( "particle16.png" );
+	pa->setPosition( 512, 144 );
+	pa->setDirection( 180 );
+	pa->setMax( 50 );
+	pa->setAlphaRange( 0, 255 );
+	pa->setColorRange( 254, 254, 254, 255, 255, 255 );
+	pa->setSpread( 30 );
+	pa->setVelocity( 1.0 );	
+	pa->setLength( 250 );
+//	pa->se
 
 	testspr = new Sprite;
 	loadCheck = testspr->loadImage( "testgrfx.png" );
@@ -50,7 +77,14 @@ void game_update()
 	static double scl = 3.0;
 	static double scc = 0.000005;
 
+	pa->update();
+
 	testspr->animate();
+
+	if( scc > 0 )
+		scc = (float)g_engine->getFrameRate_real() / 100000.0f;
+	else
+		scc = -( (float) g_engine->getFrameRate_real() / 100000.0f );
 
 	if( testspr->getCurrentFrame() == testspr->getTotalFrames() )
 	{
@@ -75,17 +109,36 @@ void game_update()
 
 void game_end()
 {
+	delete systemFont;
+	delete pa;
 	delete testspr;
 }
 
 void game_render3d()
 {
-	g_engine->ClearScene( D3DCOLOR_XRGB( 0, 0, 0 ) );
+	g_engine->ClearScene( D3DCOLOR_XRGB( 0, 0, 80 ) );
 }
 
 void game_render2d()
 {
+	std::ostringstream os;
+
+	pa->draw();
 	testspr->draw();
+
+	systemFont->setScale( 1.0f );
+
+	os.str( "" );
+//	os << "FPS: " << (float)( 1000.0f / g_engine->getFrameRate_real() ) << " ms";
+	os << "FPS1: " << g_engine->getFrameRate_real();
+	systemFont->Print( 1,  1, os.str() );
+
+	os.str( "" );
+	os << "FPS2: " << g_engine->getFrameRate_core();
+	systemFont->Print( 1, 20, os.str() );
+
+	systemFont->setScale( testspr->getScale() );
+	systemFont->Print( 1, 40, "Testing the font" );
 }
 
 void game_keyPress( int key )

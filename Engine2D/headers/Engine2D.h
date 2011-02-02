@@ -105,6 +105,7 @@ namespace Engine2D
 		long p_frameRate_real;
 		Timer timedUpdate;
 		Timer collisionTimer;
+		DWORD pause_start;
 
 		Input *p_input;
 		void UpdateKeyboard();
@@ -148,7 +149,7 @@ namespace Engine2D
 
 		//accessor/mutator functions expose the private variables
 		bool isPaused() { return this->p_pauseMode; }
-		void setPaused(bool value) { this->p_pauseMode = value; }
+		void setPaused(bool value);// { this->p_pauseMode = value; }
 
 		LPDIRECT3DDEVICE9 getDevice() { return this->p_device; }
 		LPDIRECT3DSURFACE9 getBackBuffer() { return this->p_backbuffer; }

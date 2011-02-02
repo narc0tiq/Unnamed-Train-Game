@@ -212,10 +212,12 @@ namespace Engine2D
 		game_update();
 
 		//update entities
-		if (!p_pauseMode) UpdateEntities();
+//		if (!p_pauseMode)
+			UpdateEntities();
 
 		//perform global collision testing at 20 Hz
-		if (!p_pauseMode && collisionTimer.stopwatch(50)) 
+//		if (!p_pauseMode && collisionTimer.stopwatch(50)) 
+		if( collisionTimer.stopwatch( 50 ) ) 
 		{
 			TestForCollisions();
 		}
@@ -627,5 +629,24 @@ namespace Engine2D
 			} //while
 		} 
 
+	void Engine::setPaused(bool value)
+    {
+        this->p_pauseMode = value;
+        if (value == true)
+        {
+            this->pause_start = (DWORD) (timeGetTime());
+            return;
+        }
+        int time_elapsed = (int) ((DWORD) (timeGetTime()) - pause_start);
+	    std::list<Entity*>::iterator i = p_entities.begin();
+	    while (i != p_entities.end())
+	    {
+	        if ( (*i)->getAlive() == true && (*i)->getLifetime() > 0 )
+	        {
+                (*i)->adjustForPause(time_elapsed);
+            }
+            i++;
+        }
+    } // end setPaused
 
 } //namespace
