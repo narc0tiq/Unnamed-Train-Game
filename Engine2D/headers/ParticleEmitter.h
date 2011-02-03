@@ -11,7 +11,7 @@ namespace Engine2D {
 	
     class ParticleEmitter
     {
-    private:
+    protected:
         typedef std::vector<Sprite*>::iterator iter;
         std::vector<Sprite*> particles;
         Texture *image;

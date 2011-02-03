@@ -51,7 +51,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\headers</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\headers;$(SolutionDir)..\headers</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -85,7 +85,7 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\headers</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\headers;$(SolutionDir)..\headers</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalDependencies>$(SolutionDir)..\lib\Engine2D.lib;$(SolutionDir)..\..\FMOD\lib\fmodex_vc.lib;$(SolutionDir)..\..\lua\lib\lua5.1.lib;d3d9.lib;d3dx9.lib;dinput8.lib;dxguid.lib;winmm.lib;user32.lib;gdi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -103,6 +103,8 @@
     <ClCompile Include="..\source\contracts.cpp" />
     <ClCompile Include="..\source\industries.cpp" />
     <ClCompile Include="..\source\main.cpp" />
+    <ClCompile Include="..\source\Map_Base.cpp" />
+    <ClCompile Include="..\source\SmokeParticle.cpp" />
     <ClCompile Include="..\source\trains.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -112,6 +114,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\headers\Map_Base.h" />
+    <ClInclude Include="..\headers\SmokeParticle.h" />
     <ClInclude Include="..\source\companies.h" />
     <ClInclude Include="..\source\contracts.h" />
     <ClInclude Include="..\source\industries.h" />

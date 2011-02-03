@@ -1,11 +1,13 @@
 #include <iostream>
 #include "Engine2D.h"
 
+#include "SmokeParticle.h"
+
 using namespace Engine2D;
 
 Sprite *testspr;
 Script settings;
-ParticleEmitter *pa;
+SmokeParticle *pa;
 Font *systemFont;
 
 bool game_preload()
@@ -38,17 +40,17 @@ bool game_init( HWND hWnd )
 	systemFont->setCharSize( 15, 20 );
 	systemFont->loadWidthData( "font.dat" );
 
-	pa = new ParticleEmitter();
-
+	pa = new SmokeParticle();
 	pa->loadImage( "test_smoke.png" );
-	pa->setPosition( 512, 144 );
+	pa->setPosition( 256, 288 );
 	pa->setDirection( 0 );
-	pa->setMax( 100 );
+	pa->setMax( 50 );
 	pa->setAlphaRange( 0, 255 );
 	pa->setColorRange( 254, 254, 254, 255, 255, 255 );
 	pa->setSpread( 10 );
 	pa->setVelocity( 1.0 );	
-	pa->setLength( 250 );
+	pa->setLength( 2500 );
+	pa->setLifetime( 1000 );
 
 	testspr = new Sprite;
 	loadCheck = testspr->loadImage( "test_train.png" );
@@ -74,19 +76,10 @@ bool game_init( HWND hWnd )
 void game_update()
 {
 	int cx, cy;
-	static double scl = 3.0;
-	static double scc = 0.000005;
 	Vector3 pos;
-
-	pa->update();
 
 	testspr->move();
 	testspr->animate();
-
-	if( scc > 0 )
-		scc =    (float) g_engine->getFrameRate_real() / 100000.0f;
-	else
-		scc = -( (float) g_engine->getFrameRate_real() / 100000.0f );
 
 	pos = testspr->getPosition();
 
@@ -97,9 +90,9 @@ void game_update()
 		testspr->setPosition( cx, cy );
 	}
 
-	pa->setPosition( pos.getX() + 4, pos.getY() - 20 );
+	pa->setPosition( pos.getX() + 8, pos.getY() );
 
-	//testspr->setScale( scl );
+	pa->update( 50 );
 
 	if( KEY_DOWN( VK_ESCAPE ) )
 		g_engine->Close();
@@ -114,7 +107,7 @@ void game_end()
 
 void game_render3d()
 {
-	g_engine->ClearScene( D3DCOLOR_XRGB( 0, 0, 80 ) );
+	g_engine->ClearScene( D3DCOLOR_XRGB( 0, 0, 160 ) );
 }
 
 void game_render2d()
