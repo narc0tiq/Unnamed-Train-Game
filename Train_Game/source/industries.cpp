@@ -15,7 +15,6 @@ class industryPlayerRating
 	float	Rating;
 };
 
-
 class industry
 {
 
@@ -90,8 +89,9 @@ class contract
 {
 	industry*	Sending;	// Sending industry
 	industry*	Recieving;	// Recieving industry
-	int			value;		// Value per unit time
-	int			expires;	// Expirey date in game time
-	bool		renew;		// Wether the contract can be renewed
+	int			Rate;		// Resorces needed per month
+	int			Remaining;	// Quantity remaining (not recieved)
+	int			Expires;	// Expirey date in game time
+	bool		Renew;		// Wether the contract can be renewed
 };
 
