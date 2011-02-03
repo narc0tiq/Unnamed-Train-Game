@@ -1,4 +1,7 @@
 
+#ifndef TRAINCARS_H
+#define TRAINCARS_H
+
 enum CargoType
 {
 	None,
@@ -38,3 +41,5 @@ class TrainCarType
 	RailType	RailType;
 	//Sprite		CarSpriteSet;
 };
+
+#endif

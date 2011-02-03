@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include "trainCars.h"
+#include "contracts.h"
 
 class Train
 {
@@ -21,6 +22,7 @@ Train Car data structure
 		int				CargoVolumeA;
 		int				CargoVolumeB;
 		TrainCarType*	CarType;
+		contract*		Contract;
 		
 		TrainCar(TrainCarType* Car_Type)
 		{

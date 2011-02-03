@@ -99,6 +99,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\source\companies.cpp" />
+    <ClCompile Include="..\source\contracts.cpp" />
     <ClCompile Include="..\source\industries.cpp" />
     <ClCompile Include="..\source\main.cpp" />
     <ClCompile Include="..\source\trains.cpp" />
@@ -110,6 +112,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\source\companies.h" />
+    <ClInclude Include="..\source\contracts.h" />
+    <ClInclude Include="..\source\industries.h" />
     <ClInclude Include="..\source\trainCars.h" />
     <ClInclude Include="..\source\trains.h" />
   </ItemGroup>
