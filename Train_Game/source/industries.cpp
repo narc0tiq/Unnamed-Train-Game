@@ -5,24 +5,20 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 class company_industry;
 
 
-
-class company_player
-{
-	std::string		Name;
-
-	
-	
-};
-
-class industryPlayerRating
-{
-	industryPlayerRating*	NextPlayer;
-	company_player*			Player;
-	float	Rating;
-};
 
 class industry
 {
@@ -96,50 +92,68 @@ private:
 
 class contract
 {
-	industry*	Sending;	// Sending industry
-	industry*	Recieving;	// Recieving industry
-	int			Rate;		// Resorces needed per month
-	int			Remaining;	// Quantity remaining (not recieved)
-	int			Expires;	// Expirey date in game time
-	bool		Renew;		// Wether the contract can be renewed
-	company_player*	Player;	// Player owning the contract, Null for nobody
+	contract*	m_NextContract;	// Link List
+	industry*	m_Sending;	// Sending industry
+	industry*	m_Recieving;	// Recieving industry
+	int			m_Rate;		// Resorces needed per month
+	int			m_Remaining;	// Quantity remaining (not recieved)
+	int			m_Expires;	// Expirey date in game time
+	bool		m_Renew;		// Wether the contract can be renewed
 
 	contract()
 	{
-		Sending = NULL;
-		Recieving = NULL;
-		Rate = 0;
-		Remaining = -1;
-		Expires = 0;
-		Renew = false;
-		Player = NULL;
+		m_Sending = NULL;
+		m_Recieving = NULL;
+		m_Rate = 0;
+		m_Remaining = -1;
+		m_Expires = 0;
+		m_Renew = false;
 	}
 
 	//person(std::string N, int A) : name(N), age(A) {}
 	contract(industry* sending,industry* recieving, int rate, int remaining, int expires, bool renew)
 	{
-		Sending = sending;
-		Recieving = recieving;
-		Rate = rate;
-		Remaining = remaining;
-		Expires = expires;
-		Renew = renew;
-		Player = NULL;
+		m_Sending = sending;
+		m_Recieving = recieving;
+		m_Rate = rate;
+		m_Remaining = remaining;
+		m_Expires = expires;
+		m_Renew = renew;
 	}
 
-	void SetPlayer(company_player*	player)	{ Player = player; }
-	void SetRate(int rate) { Rate = rate; }
-	void SetRemaining(int remaining) { Remaining = remaining; }
-	void SetExpires(int expires ) { Expires = expires; }
-	void SetRenewable(bool renew) { Renew = renew; }
+	void SetRate(int rate) { m_Rate = rate; }
+	void SetRemaining(int remaining) { m_Remaining = remaining; }
+	void SetExpires(int expires ) { m_Expires = expires; }
+	void SetRenewable(bool renew) { m_Renew = renew; }
 
-	company_player* GetPlayer(void) { return Player; }
-	industry*	GetSending(void)	{ return Sending; }
-	industry*	GetRecieving(void)	{ return Recieving; }
-	int			GetRate(void)		{ return Rate; }
-	int			GetRemaining(void)	{ return Remaining; }
-	int			GetExpires(void)	{ return Expires; }
-	bool		GetRenew(void)		{ return Renew; }
+	industry*	GetSending(void)	{ return m_Sending; }
+	industry*	GetRecieving(void)	{ return m_Recieving; }
+	int			GetRate(void)		{ return m_Rate; }
+	int			GetRemaining(void)	{ return m_Remaining; }
+	int			GetExpires(void)	{ return m_Expires; }
+	bool		GetRenew(void)		{ return m_Renew; }
 
 };
 
+class AvailableContracts
+{
+	contract*		RootContract;	// Contract List
+};
+
+class company_player
+{
+	bool			m_Human;
+	std::string		m_Name;			// Company 
+	int				m_StartDate;
+	int				m_Money;		// Money dosent include loan
+	int				m_Loan;			// Current loan
+	int				m_CValue;		// Company Value
+	contract*		RootContract;	// Contract List
+};
+
+class industryPlayerRating
+{
+	industryPlayerRating*	NextPlayer;
+	company_player*			Player;
+	float	Rating;
+};
