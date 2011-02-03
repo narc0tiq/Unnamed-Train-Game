@@ -6,7 +6,16 @@
 
 
 class company_industry;
-class company_player;
+
+
+
+class company_player
+{
+	std::string		Name;
+
+	
+	
+};
 
 class industryPlayerRating
 {
@@ -93,5 +102,44 @@ class contract
 	int			Remaining;	// Quantity remaining (not recieved)
 	int			Expires;	// Expirey date in game time
 	bool		Renew;		// Wether the contract can be renewed
+	company_player*	Player;	// Player owning the contract, Null for nobody
+
+	contract()
+	{
+		Sending = NULL;
+		Recieving = NULL;
+		Rate = 0;
+		Remaining = -1;
+		Expires = 0;
+		Renew = false;
+		Player = NULL;
+	}
+
+	//person(std::string N, int A) : name(N), age(A) {}
+	contract(industry* sending,industry* recieving, int rate, int remaining, int expires, bool renew)
+	{
+		Sending = sending;
+		Recieving = recieving;
+		Rate = rate;
+		Remaining = remaining;
+		Expires = expires;
+		Renew = renew;
+		Player = NULL;
+	}
+
+	void SetPlayer(company_player*	player)	{ Player = player; }
+	void SetRate(int rate) { Rate = rate; }
+	void SetRemaining(int remaining) { Remaining = remaining; }
+	void SetExpires(int expires ) { Expires = expires; }
+	void SetRenewable(bool renew) { Renew = renew; }
+
+	company_player* GetPlayer(void) { return Player; }
+	industry*	GetSending(void)	{ return Sending; }
+	industry*	GetRecieving(void)	{ return Recieving; }
+	int			GetRate(void)		{ return Rate; }
+	int			GetRemaining(void)	{ return Remaining; }
+	int			GetExpires(void)	{ return Expires; }
+	bool		GetRenew(void)		{ return Renew; }
+
 };
 
