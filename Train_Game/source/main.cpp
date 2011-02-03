@@ -26,7 +26,7 @@ bool game_init( HWND hWnd )
 {
 	bool loadCheck;
 
-//	g_engine->setMaximizeProcessor( true );
+	g_engine->setMaximizeProcessor( true );
 
 	systemFont = new Font();
 	if( !systemFont->loadImage( "font.tga" ) )
@@ -40,19 +40,18 @@ bool game_init( HWND hWnd )
 
 	pa = new ParticleEmitter();
 
-	pa->loadImage( "particle16.png" );
+	pa->loadImage( "test_smoke.png" );
 	pa->setPosition( 512, 144 );
-	pa->setDirection( 180 );
-	pa->setMax( 50 );
+	pa->setDirection( 0 );
+	pa->setMax( 100 );
 	pa->setAlphaRange( 0, 255 );
 	pa->setColorRange( 254, 254, 254, 255, 255, 255 );
-	pa->setSpread( 30 );
+	pa->setSpread( 10 );
 	pa->setVelocity( 1.0 );	
 	pa->setLength( 250 );
-//	pa->se
 
 	testspr = new Sprite;
-	loadCheck = testspr->loadImage( "testgrfx.png" );
+	loadCheck = testspr->loadImage( "test_train.png" );
 
 	if( loadCheck == false )
 	{
@@ -60,12 +59,13 @@ bool game_init( HWND hWnd )
 	}
 	else
 	{
-		testspr->setTotalFrames( 10 );
+		testspr->setTotalFrames( 1 );
 		testspr->setColumns( 10 );
-		testspr->setSize( 32, 32 );
+		testspr->setSize( 50, 34 );
 		testspr->setFrameTimer( 40 );
 		testspr->setPosition( 400, 300 );
-		testspr->setScale( 3.0 );
+		testspr->setScale( 1.0 );
+		testspr->setVelocity( -2, 0 );
 	}
 
 	return loadCheck;
@@ -76,32 +76,30 @@ void game_update()
 	int cx, cy;
 	static double scl = 3.0;
 	static double scc = 0.000005;
+	Vector3 pos;
 
 	pa->update();
 
+	testspr->move();
 	testspr->animate();
 
 	if( scc > 0 )
-		scc = (float)g_engine->getFrameRate_real() / 100000.0f;
+		scc =    (float) g_engine->getFrameRate_real() / 100000.0f;
 	else
 		scc = -( (float) g_engine->getFrameRate_real() / 100000.0f );
 
-	if( testspr->getCurrentFrame() == testspr->getTotalFrames() )
+	pos = testspr->getPosition();
+
+	if( pos.getX() <= 100 )
 	{
-		cx = 400 - 16;
-		cy = 300 - 16;
+		cx = g_engine->getScreenWidth() - 100;
+		cy = 300;
 		testspr->setPosition( cx, cy );
 	}
 
-	if( scl <= 0.5 )
-		scc = -scc;
+	pa->setPosition( pos.getX() + 4, pos.getY() - 20 );
 
-	if( scl >= 6.0 )
-		scc = -scc;
-
-	scl += scc;
-
-	testspr->setScale( scl );
+	//testspr->setScale( scl );
 
 	if( KEY_DOWN( VK_ESCAPE ) )
 		g_engine->Close();
@@ -129,7 +127,6 @@ void game_render2d()
 	systemFont->setScale( 1.0f );
 
 	os.str( "" );
-//	os << "FPS: " << (float)( 1000.0f / g_engine->getFrameRate_real() ) << " ms";
 	os << "FPS1: " << g_engine->getFrameRate_real();
 	systemFont->Print( 1,  1, os.str() );
 
