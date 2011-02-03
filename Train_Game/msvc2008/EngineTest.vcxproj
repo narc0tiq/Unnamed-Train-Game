@@ -99,6 +99,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\source\industries.cpp" />
     <ClCompile Include="..\source\main.cpp" />
     <ClCompile Include="..\source\trains.cpp" />
   </ItemGroup>
