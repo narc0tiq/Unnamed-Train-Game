@@ -1,14 +1,14 @@
 
-/EngineTest.exe
-/EngineTest.ilk
-/EngineTest.pdb
 /*.dll
-/Train_Game/msvc2008/Debug
-/Train_Game/msvc2008/Release
+/bin/EngineTest.*
+/bin/*.dll
 /Engine2D/lib
 /Engine2D/msvc2008/_UpgradeReport_Files
 /Engine2D/msvc2008/Debug
 /Engine2D/msvc2008/ipch
 /Engine2D/msvc2008/Release
-/bin/EngineTest.*
-/bin/*.dll
+/Train_Game/msvc2008/Debug
+/Train_Game/msvc2008/Release
+
+*.sdf
+*.suo
