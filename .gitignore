@@ -9,6 +9,9 @@
 /Engine2D/msvc2008/Release
 /Train_Game/msvc2008/Debug
 /Train_Game/msvc2008/Release
+/ConsoleDataTest/bin
+/ConsoleDataTest/vc2010/Debug
+/ConsoleDataTest/vc2010/Release
 
 *.sdf
 *.suo

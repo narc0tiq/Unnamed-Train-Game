@@ -99,12 +99,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\source\companies.cpp" />
-    <ClCompile Include="..\source\contracts.cpp" />
-    <ClCompile Include="..\source\industries.cpp" />
     <ClCompile Include="..\source\main.cpp" />
     <ClCompile Include="..\source\SmokeParticle.cpp" />
-    <ClCompile Include="..\source\trains.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Engine2D\msvc2008\Engine2D.vcxproj">
@@ -114,11 +110,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\headers\SmokeParticle.h" />
-    <ClInclude Include="..\source\companies.h" />
-    <ClInclude Include="..\source\contracts.h" />
-    <ClInclude Include="..\source\industries.h" />
-    <ClInclude Include="..\source\trainCars.h" />
-    <ClInclude Include="..\source\trains.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
