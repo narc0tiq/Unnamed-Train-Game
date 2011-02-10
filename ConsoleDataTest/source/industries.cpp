@@ -14,7 +14,7 @@ public:
 	int			CargoRequiredSize;	// The number of cargos required
 	CargoType*	CargoProduced;		// Pointer to array of Cargo
 	CargoType*	CargoRequired;
-	
+
 public:
 	// constructor
 	industry()

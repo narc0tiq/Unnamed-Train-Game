@@ -9,57 +9,64 @@
 #include "trainCars.h"
 #include "contracts.h"
 
-class Train
+
+class TrainCar
 {
-
-	private:
-/*
-Train Car data structure
-*/
-	struct TrainCar
-	{
-		TrainCar*		NextCar;
-		int				CargoVolumeA;
-		int				CargoVolumeB;
-		TrainCarType*	CarType;
-		contract*		Contract;
-		
-		TrainCar(TrainCarType* Car_Type)
-		{
-			NextCar			= NULL;	// Floating pointer is bad!
-			CargoVolumeA	= 0;
-			CargoVolumeB	= 0;
-			CarType			= Car_Type;
-		}
-	};
-
-public:
-	float		MaxSpeed;			// Maximum speed for the train
-	float		TractiveForce;		// the tractive force the train exerts
-	int			Dest;				// destination
-	float		X;
-	float		Y;
-	char		Direction;			// 1-North 2-North/East 3-East ...
-	RailType	RailType;
-	bool		BrokenDown;
+	friend class Train;
 	
 private:
-	float		Speed;
-	TrainCar*	RootCar;
+	TrainCar*		m_NextCar;			
+	int				m_CargoVolumeA;		
+	int				m_CargoVolumeB;		
+	TrainCarType*	m_CarType;			
+	contract*		m_Contract;			
+	int				m_Age;				// Age of the car (built year/month)
+
+public:
+	TrainCar(TrainCarType* Car_Type)
+	{
+		m_NextCar		= NULL;	// Floating pointer is bad!
+		m_CargoVolumeA	= 0;
+		m_CargoVolumeB	= 0;
+		m_CarType		= Car_Type;
+	}
+	void	SetCargoVolumeA(int A) { m_CargoVolumeA = A; }
+	void	SetCargoVolumeB(int B) { m_CargoVolumeB = B; }
+	void	SetContract(contract* C) { m_Contract = C; }
+	void	GetCarType(TrainCarType* T) { m_CarType = T; }
+
+	int		GetCargoVolumeA() { return m_CargoVolumeA; }
+	int		GetCargoVolumeB() { return m_CargoVolumeB; }
+	contract*	GetContract() { return m_Contract; }
+	TrainCarType*	GetCarType() { return m_CarType; }
+
+};
+
+class Train
+{
 	
+private:
+	float		m_MaxSpeed;			// Maximum speed for the train
+	float		m_TractiveForce;		// the tractive force the train exerts
+	int			m_Dest;				// destination
+	float		m_X;
+	float		m_Y;
+	char		m_Direction;			// 1-North 2-North/East 3-East ...
+	RailType	m_RailType;
+	bool		m_BrokenDown;
+	float		m_Speed;
+	TrainCar*	m_RootCar;
 	
 public:
 	Train(void)
 	{
-		RootCar = NULL;
+		m_RootCar = NULL;
 	}
-	
 	
 	~Train(void)
 	{
 		// Destroy train data here
 	}
-	
 	
 	/*
 		Add a Train car to the train
@@ -67,21 +74,24 @@ public:
 		-1 for the end
 		will return false on error
 	*/
-	bool AddTrainCar()
+	bool AddTrainCar(TrainCar* NewCar)
 	{
-		TrainCar*	temp	= NULL;			// Temparary pointer
-		TrainCar*	newCar	= new TrainCar(NULL);
-		
-		temp = RootCar;
+		TrainCar*	temp	= m_RootCar;			// Temparary pointer
+
 		if (temp == NULL)
 		{
-			RootCar = newCar;
+			m_RootCar = NewCar;
 		}
 		else
 		{
-			while (temp->NextCar != NULL) temp = temp->NextCar;	// Find last node
-			temp->NextCar = newCar;
+			while (temp->m_NextCar != NULL)
+			{
+				if (temp->m_NextCar == NewCar) return false;
+				temp = temp->m_NextCar;	// Find last node
+			}
+			temp->m_NextCar = NewCar;
 		}
+		return true;
 	}
 	
 	/*
@@ -91,16 +101,35 @@ public:
 	TrainCar* GetTrainCar(int pos)
 	{
 		int c = 0;
-		TrainCar* temp	= RootCar;
-		if (RootCar == NULL) return NULL;
+		TrainCar* temp	= m_RootCar;
+		if (m_RootCar == NULL) return NULL;
 		
-		while (temp->NextCar != NULL)
+		while (temp->m_NextCar != NULL)
 		{
 			if (c == pos) return temp;
 			c++;
-			temp = temp->NextCar;
+			temp = temp->m_NextCar;
 		}
 		if (c == pos) return temp;
 		return NULL;
 	}
 };
+
+
+void test()
+{
+	
+	Train* NewTrain = new Train();
+	printf("New Train\n");
+	
+	TrainCar* a = new TrainCar(NULL);
+	TrainCar* b = new TrainCar(NULL);
+	TrainCar* c = new TrainCar(NULL);
+	
+	a->SetCargoVolumeA(10);
+	b->SetCargoVolumeA(20);
+	c->SetCargoVolumeA(30);
+
+	NewTrain->AddTrainCar(a);
+
+}

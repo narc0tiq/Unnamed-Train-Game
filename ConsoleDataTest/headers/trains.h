@@ -1,45 +1,56 @@
 
 
 #include "trainCars.h"
+#include "contracts.h"
+
+
+class TrainCar
+{
+	friend class Train;
+	
+private:
+	TrainCar*		m_NextCar;
+	int				m_CargoVolumeA;
+	int				m_CargoVolumeB;
+	TrainCarType*	m_CarType;
+	contract*		m_Contract;
+
+public:
+	TrainCar(TrainCarType* Car_Type);
+
+	void	SetCargoVolumeA(int A);
+	void	SetCargoVolumeB(int B);
+	void	SetContract(contract* C);
+	void	GetCarType(TrainCarType* T);
+
+	int		GetCargoVolumeA();
+	int		GetCargoVolumeB();
+	contract*	GetContract();
+	TrainCarType*	GetCarType();
+};
 
 class Train
 {
-
 private:
-	/*
-	Train Car data structure
-	*/
-	struct TrainCar
-	{
-		TrainCar*		NextCar;
-		int				CargoVolumeA;
-		int				CargoVolumeB;
-		TrainCarType*	CarType;
-		
-		TrainCar(TrainCarType* Car_Type);
-	};
-
-public:
-	float		MaxSpeed;			// Maximum speed for the train
-	float		TractiveForce;		// the tractive force the train exerts
-	int			Dest;				// destination
-	float		X;
-	float		Y;
-	char		Direction;			// 1-North 2-North/East 3-East ...
-	RailType	RailType;
-	bool		BrokenDown;
-	
-private:
-	float		Speed;
-	TrainCar*	RootCar;
+	float		m_MaxSpeed;			// Maximum speed for the train
+	float		m_TractiveForce;		// the tractive force the train exerts
+	int			m_Dest;				// destination
+	float		m_X;
+	float		m_Y;
+	char		m_Direction;			// 1-North 2-North/East 3-East ...
+	RailType	m_RailType;
+	bool		m_BrokenDown;
+	float		m_Speed;
+	TrainCar*	m_RootCar;
 	
 public:
 				Train(void);
 				~Train(void);
-	bool		AddTrainCar();			// Adds to the end
+	//bool		AddTrainCar();			
+	bool		AddTrainCar(TrainCar*);	// Adds to the end
 	TrainCar*	GetTrainCar(int pos);
 
-
+/*
 	// TODO: Define these functions
 	bool		AddTrainCar(int pos);	// Add a car at a position
 	bool		SwapTrainCar(int pos);	// Swaps a train car with the one after it - False on Fail
@@ -63,4 +74,5 @@ public:
 	bool		SetDest(int);
 	void		SetDirection(char);
 	void		SetBrokenDown(bool);
+*/
 };

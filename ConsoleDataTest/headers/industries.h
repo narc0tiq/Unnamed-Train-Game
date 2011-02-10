@@ -1,4 +1,8 @@
 
+
+#ifndef INDUSTRIES_H
+#define INDUSTRIES_H
+
 #include "trainCars.h"
 
 class industry
@@ -20,3 +24,5 @@ public:
 private:
 	CargoType* AddCargo(CargoType* oldCargo, int* CargoSize, CargoType Cargo);
 };
+
+#endif

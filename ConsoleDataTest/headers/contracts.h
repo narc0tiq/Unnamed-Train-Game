@@ -1,4 +1,7 @@
 
+#ifndef CONTRACTS_H
+#define CONTRACTS_H
+
 #include "industries.h"
 
 class contract
@@ -31,3 +34,5 @@ class AvailableContracts
 {
 	contract*		RootContract;	// Contract List
 };
+
+#endif

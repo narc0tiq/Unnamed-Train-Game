@@ -28,18 +28,22 @@ enum RailType
 
 class TrainCarType
 {
-	int			ID;
-	CargoType	CargoA;
-	CargoType	CargoB;
-	char		Name[32];				// Name of the Car Type
-	float		MaxSpeed;			// Maximum speed for the train
-	float		TractiveForce;		// The tractive force the train exerts
-	int			MaxCargoA;			// The maximum cargo for Cargo Type A
-	int			MaxCargoB;			// The maximum cargo for Cargo Type B
-	int			Cost;				// Cost of the car
-	int			Mass;				// Empty weight of the car
-	RailType	RailType;
+private:
+	int			m_ID;
+	CargoType	m_CargoA;
+	CargoType	m_CargoB;
+	char		m_Name[32];			// Name of the Car Type
+	float		m_MaxSpeed;			// Maximum speed for the train
+	float		m_TractiveForce;	// The tractive force the train exerts
+	int			m_MaxCargoA;		// The maximum cargo for Cargo Type A
+	int			m_MaxCargoB;		// The maximum cargo for Cargo Type B
+	int			m_Cost;				// Cost of the car
+	int			m_Mass;				// Empty weight of the car
+	RailType	m_RailType;
 	//Sprite		CarSpriteSet;
+public:
+	CargoType GetCargoA() { return m_CargoA; }
+	CargoType GetCargoB() { return m_CargoB; }
 };
 
 #endif

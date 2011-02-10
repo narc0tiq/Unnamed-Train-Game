@@ -1,4 +1,7 @@
 
+#ifndef COMPANIES_H
+#define COMPANIES_H
+
 #include <iostream>
 #include "contracts.h"
 
@@ -20,3 +23,4 @@ class industryPlayerRating
 	float	Rating;
 };
 
+#endif
