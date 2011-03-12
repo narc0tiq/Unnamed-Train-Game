@@ -1,7 +1,7 @@
-
 #ifndef CONTRACTS_H
 #define CONTRACTS_H
 
+#include <iostream>
 #include "industries.h"
 
 class contract

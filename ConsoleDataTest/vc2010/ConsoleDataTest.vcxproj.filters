@@ -53,10 +53,10 @@
     <ClInclude Include="..\headers\industries.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\headers\trainCars.h">
+    <ClInclude Include="..\headers\trains.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\headers\trains.h">
+    <ClInclude Include="..\headers\trainCars.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,8 +1,10 @@
 
-
+#ifndef TRAINS_H
+#define TRAINS_H
 #include "trainCars.h"
 #include "contracts.h"
 
+#include <iostream>
 
 class TrainCar
 {
@@ -45,34 +47,48 @@ private:
 	
 public:
 				Train(void);
-				~Train(void);
-	//bool		AddTrainCar();			
+				~Train(void);	
 	bool		AddTrainCar(TrainCar*);	// Adds to the end
 	TrainCar*	GetTrainCar(int pos);
+	bool		RemoveTrainCar(int pos);// Removes a train car
 
-/*
+
 	// TODO: Define these functions
 	bool		AddTrainCar(int pos);	// Add a car at a position
 	bool		SwapTrainCar(int pos);	// Swaps a train car with the one after it - False on Fail
-	bool		RemoveTrainCar(int pos);// Removes a train car
+	
 	void		MergeTrain(Train* Trn);	// Merges two Trains
 	Train*		SplitTrain(int pos);	// Splits a train at a car
 	void		CalcTrain();			// Recalculates the trains maxspeed, weight, Tractive Force, and Rail Types
 
 	// TODO: Define get/set
-	float		GetSpeed();
-	float		GetMaxSpeed();
-	float		GetTractiveForce();
-	int			GetDest();
-	float		GetX();
-	float		GetY();
-	char		GetDirection();
-	RailType	GetRailType();
-	bool		IsBrokenDown();
+	float		GetSpeed() { return m_Speed; };
+	//float		GetMaxSpeed();
+	//float		GetTractiveForce();
+	//int		GetDest();
+	float		GetX() { return m_X; };
+	float		GetY() { return m_Y; };
+	//char		GetDirection();
+	RailType	GetRailType() { return m_RailType; };
+	bool		IsBrokenDown() { return m_BrokenDown; };
 
-	void		SetSpeed(float);
-	bool		SetDest(int);
-	void		SetDirection(char);
-	void		SetBrokenDown(bool);
-*/
+	//void		SetSpeed(float);
+	//bool		SetDest(int);
+	//void		SetDirection(char);
+	void		SetBrokenDown(bool isBrokenDown) { m_BrokenDown = isBrokenDown; };
+
 };
+
+
+class TrainOrders
+{
+
+
+
+
+
+};
+
+
+
+#endif

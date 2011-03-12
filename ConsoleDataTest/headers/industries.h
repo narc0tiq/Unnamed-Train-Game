@@ -1,9 +1,11 @@
-
-
 #ifndef INDUSTRIES_H
 #define INDUSTRIES_H
 
+#include <iostream>
 #include "trainCars.h"
+
+class company_industry;
+
 
 class industry
 {

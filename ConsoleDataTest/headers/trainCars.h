@@ -1,6 +1,20 @@
-
 #ifndef TRAINCARS_H
 #define TRAINCARS_H
+
+
+
+/*
+	Definitions for the all cargo types
+	These classes will need to be changed so that can be read form lua files
+	Not shure how to do that yet
+*/
+
+class CargoType_x
+{
+	//std::string		m_cargoName;
+	float			CargoMass;		// per Unit of cargo, For phx
+	int				CarTypes;		// car types the cargo can be held in
+};
 
 enum CargoType
 {
@@ -17,13 +31,18 @@ enum CargoType
 	Steel
 };
 
+
+
 enum RailType
 {
 	Normal		=	1,
 	Electric	=	2,
 	HighSpeed	=	4,
-	SlowSpeed	=	8
+	SlowSpeed	=	8,
+	Bridge		=	16
 };
+
+
 
 
 class TrainCarType

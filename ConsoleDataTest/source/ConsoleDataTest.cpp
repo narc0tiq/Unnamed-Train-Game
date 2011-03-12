@@ -11,6 +11,7 @@ int _tmain(int argc, _TCHAR* argv[])
 {
 	
 	Train* NewTrain = new Train();
+
 	printf("New Train\n");
 	
 	TrainCar* a = new TrainCar(NULL);
@@ -21,13 +22,34 @@ int _tmain(int argc, _TCHAR* argv[])
 	b->SetCargoVolumeA(20);
 	c->SetCargoVolumeA(30);
 	printf("3 New Cars\n");
+	printf("\n");
 
 	NewTrain->AddTrainCar(a);
 	printf("Added Car A\n");
+	for (int i = 0; TrainCar* temp = NewTrain->GetTrainCar(i) ; i++ )
+	{
+		printf("Cargo in car #%i: %i\n" , i,temp->GetCargoVolumeA());
+	}
+	printf("\n");
+	
+	NewTrain->AddTrainCar(b);
+	printf("Added Car B\n");
+	for (int i = 0; TrainCar* temp = NewTrain->GetTrainCar(i) ; i++ )
+	{
+		printf("Cargo in car #%i: %i\n" , i,temp->GetCargoVolumeA());
+	}
+	printf("\n");
+	
+	NewTrain->AddTrainCar(c);
+	printf("Added Car C\n");
+	for (int i = 0; TrainCar* temp = NewTrain->GetTrainCar(i) ; i++ )
+	{
+		printf("Cargo in car #%i: %i\n" , i,temp->GetCargoVolumeA());
+	}
+	
 
-
-
-	printf("this is a test\n");
+	
+	printf("\nEnd of Line\n");
 	getchar();
 	return 0;
 }
