@@ -1,1 +1,12 @@
 So far, so good!
+
+  Please don't clone this repository. It's suffering from a bad case of the 
+"holy shit, why did we commit THAT?!?" -- specifically with regards to some 
+enormous blobs (binary large objects), i.e. completely obscure files that
+shouldn't have gone into revision control in the first place.
+
+When we get back to actively working on this project, the first thing will 
+be to rewrite the repository history to remove all history of those 
+horrible, horrible things.
+
+...or maybe it'll be a new project altogether, I dunno.
